@@ -1,0 +1,9 @@
+{
+  "pollId": "2026-01-11_weekly",
+  "createdAt": "2026-01-11T10:00:00.000Z",
+  "closedAt": "2026-01-12T10:00:00.000Z",
+  "winner": 3,
+  "winnerText": "Remove 'no_apologies' rule",
+  "winnerAction": "DELETE_RULE:no_apologies",
+  "tally": { "1": 12, "2": 4, "3": 20, "4": 2, "5": 1 }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "jester-ai-agent",
+  "version": "1.0.0",
+  "description": "Autonomous AI frog-jester that posts daily jokes and replies on X. Groq-powered. Ends with ribbit.",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "daily": "MODE=daily tsx src/index.ts",
+    "reply": "MODE=reply tsx src/index.ts",
+    "metrics": "MODE=metrics tsx src/index.ts",
+    "poll": "MODE=poll tsx src/index.ts",
+    "watch": "tsx agent/watch.ts",
+    "test": "node -e \"console.log('No tests configured yet'); process.exit(0)\"",
+    "agent:fix": "tsx agent/fixer.ts",
+    "agent:test": "tsx agent/runTests.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "openai": "^4.56.0",
+    "twitter-api-v2": "^1.19.1",
+    "uuid": "^10.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.7",
+    "@types/uuid": "^10.0.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  }
+}
