@@ -1,75 +1,92 @@
-import fs from "fs";
-import path from "path";
-import { CONFIG } from "./config.js";
-import { log } from "./logger.js";
+import fs from "node:fs";
+import path from "node:path";
+
+export type RuleType = "hard" | "soft";
 
 export type Rule = {
   id: string;
-  title: string;
   enabled: boolean;
-  type: "regex" | "suffix" | "prefix";
-  value: string;
-  severity?: "reject" | "warn";
+  type: RuleType;
+  text: string;
+  priority: number;
 };
 
-export type RulesFile = {
+export type RulesDoc = {
   version: number;
-  character: any;
-  constraints: {
-    maxTweetChars: number;
-    maxReplyChars: number;
-  };
-  required: Rule[];
-  banned: Rule[];
-  style: Rule[];
-  safety: Rule[];
+  updatedAt: string;
+  baseSystem: string;
+  rules: Rule[];
 };
 
-export function loadRules(): RulesFile {
-  const fp = path.resolve(CONFIG.paths.rulesFile);
-  if (!fs.existsSync(fp)) {
-    throw new Error(`Rules file not found: ${fp}`);
-  }
-  const raw = fs.readFileSync(fp, "utf-8");
-  const json = JSON.parse(raw);
+const RULES_PATH = path.join(process.cwd(), "src", "governance", "rules.json");
 
-  // minimal validation (avoid crash if someone edits badly)
-  if (!json.constraints) {
-    json.constraints = {
-      maxTweetChars: CONFIG.text.maxTweetChars,
-      maxReplyChars: CONFIG.text.maxReplyChars,
-    };
-  }
-  for (const k of ["required", "banned", "style", "safety"]) {
-    if (!Array.isArray(json[k])) json[k] = [];
-  }
-  return json as RulesFile;
+export function loadRules(): RulesDoc {
+  const raw = fs.readFileSync(RULES_PATH, "utf-8");
+  return JSON.parse(raw) as RulesDoc;
 }
 
-export function saveRules(rules: RulesFile) {
-  const fp = path.resolve(CONFIG.paths.rulesFile);
-  fs.mkdirSync(path.dirname(fp), { recursive: true });
-  fs.writeFileSync(fp, JSON.stringify(rules, null, 2), "utf-8");
-  log("INFO", "Rules saved", { file: fp });
+export function getEnabledRulesSorted(doc: RulesDoc): Rule[] {
+  return doc.rules
+    .filter(r => r.enabled)
+    .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
 }
 
-export function disableRuleById(rules: RulesFile, id: string): boolean {
-  const all = [...rules.required, ...rules.banned, ...rules.style, ...rules.safety];
-  const r = all.find((x) => x.id === id);
-  if (!r) return false;
-  r.enabled = false;
-  return true;
-}
+export function buildSystemPrompt(extra?: string): string {
+  const doc = loadRules();
+  const rules = getEnabledRulesSorted(doc);
 
-export function deleteRuleById(rules: RulesFile, id: string): boolean {
-  const keys: (keyof RulesFile)[] = ["required", "banned", "style", "safety"];
-  for (const key of keys) {
-    const arr = rules[key] as any[];
-    const idx = arr.findIndex((x) => x.id === id);
-    if (idx >= 0) {
-      arr.splice(idx, 1);
-      return true;
-    }
+  const hard = rules.filter(r => r.type === "hard");
+  const soft = rules.filter(r => r.type === "soft");
+
+  const lines: string[] = [];
+  lines.push(doc.baseSystem.trim());
+  lines.push("");
+
+  if (hard.length) {
+    lines.push("HARD RULES (must follow):");
+    for (const r of hard) lines.push(`- ${r.text}`);
+    lines.push("");
   }
-  return false;
+
+  if (soft.length) {
+    lines.push("STYLE RULES (prefer):");
+    for (const r of soft) lines.push(`- ${r.text}`);
+    lines.push("");
+  }
+
+  if (extra && extra.trim().length) {
+    lines.push("EXTRA CONTEXT:");
+    lines.push(extra.trim());
+    lines.push("");
+  }
+
+  return lines.join("\n").trim();
+}
+
+/**
+ * Allows governance to disable a rule by id.
+ */
+export function disableRule(ruleId: string): RulesDoc {
+  const doc = loadRules();
+  const idx = doc.rules.findIndex(r => r.id === ruleId);
+  if (idx >= 0) {
+    doc.rules[idx].enabled = false;
+    doc.updatedAt = new Date().toISOString();
+    fs.writeFileSync(RULES_PATH, JSON.stringify(doc, null, 2), "utf-8");
+  }
+  return doc;
+}
+
+/**
+ * Allows governance to enable a rule by id.
+ */
+export function enableRule(ruleId: string): RulesDoc {
+  const doc = loadRules();
+  const idx = doc.rules.findIndex(r => r.id === ruleId);
+  if (idx >= 0) {
+    doc.rules[idx].enabled = true;
+    doc.updatedAt = new Date().toISOString();
+    fs.writeFileSync(RULES_PATH, JSON.stringify(doc, null, 2), "utf-8");
+  }
+  return doc;
 }
