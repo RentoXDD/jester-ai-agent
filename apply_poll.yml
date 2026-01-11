@@ -1,0 +1,58 @@
+name: Apply Poll Result
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 * * * *"   # every hour at minute 15 (UTC)
+
+concurrency:
+  group: jester-agent-global
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Apply latest poll result (delete rule)
+        env:
+          MODE: poll_apply
+        run: npx tsx src/pollApply.ts
+
+      - name: Commit & push if changed
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          set -e
+          if [ -z "$GH_PAT" ]; then
+            echo "GH_PAT not set; skipping push."
+            exit 0
+          fi
+
+          git config user.name "jester-bot"
+          git config user.email "jester-bot@users.noreply.github.com"
+
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git add data/rules.json data/governance || true
+          git commit -m "governance: apply poll result (delete rule)" || exit 0
+
+          git remote set-url origin "https://x-access-token:${GH_PAT}@github.com/${GITHUB_REPOSITORY}.git"
+          git push origin HEAD:main
