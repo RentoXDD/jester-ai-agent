@@ -1,0 +1,63 @@
+name: Collect & Improve Every 15 Minutes
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 minutes (UTC)
+
+concurrency:
+  group: jester-agent-global
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run (metrics/collect)
+        env:
+          MODE: metrics
+
+          # ✅ Run collecting on 8B (more stable and cheaper)
+          GROQ_MODEL: llama-3.1-8b-instant
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+          X_APP_KEY: ${{ secrets.X_APP_KEY }}
+          X_APP_SECRET: ${{ secrets.X_APP_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+
+        run: |
+          set -e
+          echo "Running collect/metrics..."
+
+          max_attempts=4
+          attempt=1
+
+          while [ $attempt -le $max_attempts ]; do
+            echo "Attempt $attempt/$max_attempts..."
+            if npx tsx src/index.ts; then
+              echo "✅ Success"
+              exit 0
+            fi
+
+            wait=$(( 2 ** attempt * 25 ))  # 50s, 100s, 200s, 400s
+            echo "❌ Failed. Sleeping ${wait}s before retry..."
+            sleep $wait
+            attempt=$((attempt+1))
+          done
+
+          echo "❌ All attempts failed."
+          exit 1
