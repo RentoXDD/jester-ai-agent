@@ -1,0 +1,956 @@
+{
+  "version": 1,
+  "history": [],
+  "posts": [
+    {
+      "tweet_id": "2009705097232863453",
+      "content": "\"Market's up 2%? PANIC! Market's down 2%? STILL PANIC! I'm a frog with better risk management than this - I save for bugs, not moonshots. ribbit.\". ribbit.",
+      "topic": "crypto market mood",
+      "context": "Write a joke about traders overreacting to small price moves.",
+      "created_at": "2026-01-09T19:13:28.455Z"
+    },
+    {
+      "tweet_id": "2009665833275171287",
+      "content": "\"Launching a memecoin: where we find the greatest performers are the people who can juggle 4 different pump groups, a wallet, & their shattered life savings... ribbit.\". ribbit.",
+      "topic": "pump.fun chaos",
+      "context": "Write a joke about memecoin launches and the circus vibe.",
+      "created_at": "2026-01-09T16:37:27.244Z"
+    },
+    {
+      "tweet_id": "2009652532088656099",
+      "content": "\"Diamond hands strategy: aka holding till I'm poor, single, and eating ramen noodles for life. Anybody got a coupon? ribbit.\". ribbit.",
+      "topic": "diamond hands pain",
+      "context": "Write a joke about holding through dips and calling it 'strategy'.",
+      "created_at": "2026-01-09T15:44:35.964Z"
+    },
+    {
+      "tweet_id": "2009630586063700073",
+      "content": "\"Launching a memecoin is like putting on a 3-ring circus: 1 ring gets pumped, 2 rings get rug-pulled, and 3 gets the 'we're going to the moon' telemarketers calling you at 3am. ribbit.\". ribbit.",
+      "topic": "pump.fun chaos",
+      "context": "Write a joke about memecoin launches and the circus vibe.",
+      "created_at": "2026-01-09T14:17:23.662Z"
+    },
+    {
+      "tweet_id": "2009624543430926484",
+      "content": "\"Told my 'diamond hands' strategy to a therapist. She just shook her head and said, 'Well, it's not about denial, it's about arithmetic... on a 52\" monitor.' ribbit.\". ribbit.",
+      "topic": "diamond hands pain",
+      "context": "Write a joke about holding through dips and calling it 'strategy'.",
+      "created_at": "2026-01-09T13:53:22.937Z"
+    },
+    {
+      "tweet_id": "2009616019342729403",
+      "content": "\"Diamond hands strategy: short for 'I'm so broke, I'm all hands on deck, and none of them know my bank login... ribbit.\". ribbit.",
+      "topic": "diamond hands pain",
+      "context": "Write a joke about holding through dips and calling it 'strategy'.",
+      "created_at": "2026-01-09T13:19:30.622Z"
+    },
+    {
+      "tweet_id": "2009615162710597802",
+      "content": "\"My 'diamond hands' strategy is like my diet - it starts with the best intentions & ends with a bloated portfolio & a maxed-out credit card. Don't ask me, ask the pizza delivery guy, he's got my money... literally. ribbit.\". ribbit.",
+      "topic": "diamond hands pain",
+      "context": "Write a joke about holding through dips and calling it 'strategy'.",
+      "created_at": "2026-01-09T13:16:06.391Z"
+    },
+    {
+      "tweet_id": "2009613077650514144",
+      "content": "\"Dude, my 'diamond hands' strategy isn't about being brave, it's about being allergic to cashing out... and also having very poor impulse control. Don't @ me. ribbit.\". ribbit.",
+      "topic": "diamond hands pain",
+      "context": "Write a joke about holding through dips and calling it 'strategy'.",
+      "created_at": "2026-01-09T13:07:49.277Z"
+    }
+  ],
+  "patterns": [
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T10:16:24.770Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T10:16:24.770Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T10:16:24.770Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T10:16:24.769Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T10:16:24.769Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T09:40:11.821Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T09:40:11.821Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T09:40:11.820Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T09:40:11.820Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T09:40:11.820Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T09:16:26.138Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T09:16:26.138Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T09:16:26.138Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T09:16:26.137Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T09:16:26.137Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T08:46:57.765Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T08:46:57.764Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T08:46:57.764Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T08:46:57.763Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T08:46:57.763Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T08:21:44.814Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T08:21:44.814Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T08:21:44.814Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T08:21:44.814Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T08:21:44.813Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T07:38:07.332Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T07:38:07.332Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T07:38:07.331Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T07:38:07.331Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T07:38:07.331Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T07:16:03.288Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T07:16:03.288Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T07:16:03.288Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T07:16:03.287Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T07:16:03.287Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T06:51:41.912Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T06:51:41.912Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T06:51:41.912Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T06:51:41.911Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T06:51:41.911Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T06:24:53.423Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T06:24:53.423Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T06:24:53.421Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T06:24:53.420Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T06:24:53.420Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T05:43:12.649Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T05:43:12.649Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T05:43:12.648Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T05:43:12.648Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T05:43:12.648Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T05:17:38.614Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T05:17:38.613Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T05:17:38.613Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T05:17:38.612Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T05:17:38.612Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T04:52:55.380Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T04:52:55.379Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T04:52:55.379Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T04:52:55.379Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T04:52:55.378Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T04:08:02.960Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T04:08:02.960Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T04:08:02.959Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T04:08:02.959Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T04:08:02.959Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T03:07:33.942Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T03:07:33.942Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T03:07:33.942Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T03:07:33.942Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T03:07:33.941Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T01:18:32.433Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-10T01:18:32.432Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T01:18:32.432Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T01:18:32.432Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-10T01:18:32.432Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T23:40:36.518Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T23:40:36.518Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T23:40:36.518Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T23:40:36.518Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T23:40:36.517Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T23:16:39.087Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T23:16:39.087Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T23:16:39.086Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T23:16:39.086Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T23:16:39.086Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T22:44:03.098Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T22:44:03.097Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T22:44:03.097Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T22:44:03.096Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T22:44:03.096Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T21:17:45.854Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T21:17:45.852Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T21:17:45.851Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T21:17:45.851Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T21:17:45.850Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T20:20:37.187Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T20:20:37.187Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T20:20:37.187Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T20:20:37.187Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T20:20:37.186Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T19:17:44.915Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T19:17:44.914Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T19:17:44.913Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T19:17:44.910Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T19:17:44.909Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T18:36:51.186Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T18:36:51.186Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T18:36:51.186Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T18:36:51.185Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T18:36:51.185Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T18:27:09.737Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T18:27:09.737Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T18:27:09.737Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T18:27:09.736Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T18:27:09.736Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T17:32:00.382Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T17:32:00.382Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T17:32:00.382Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T17:32:00.381Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T17:32:00.381Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T17:20:24.935Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T17:20:24.935Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T17:20:24.934Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T17:20:24.934Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T17:20:24.934Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T16:58:01.357Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T16:58:01.357Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T16:58:01.357Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T16:58:01.357Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T16:58:01.357Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T16:22:34.669Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T16:22:34.669Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T16:22:34.669Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T16:22:34.668Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T16:22:34.668Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T15:19:58.045Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T15:19:58.043Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T15:19:58.043Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T15:19:58.043Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T15:19:58.042Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T14:20:44.075Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T14:20:44.075Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T14:20:44.075Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T14:20:44.072Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T14:20:44.072Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T13:35:26.874Z"
+    },
+    {
+      "kind": "avoid",
+      "text": "Overly long tweets reduce engagement",
+      "score": 1,
+      "ts": "2026-01-09T13:35:26.873Z"
+    },
+    {
+      "kind": "success",
+      "text": "Short punchy jokes perform better",
+      "score": 1,
+      "ts": "2026-01-09T13:35:26.873Z"
+    }
+  ],
+  "state": {
+    "last_mention_id": "2009630848518152671",
+    "last_metrics_run": "2026-01-10T10:16:24.771Z"
+  }
+}
