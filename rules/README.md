@@ -1,4 +1,4 @@
-# 📋 Current Rules — Jester AI Agent
+# 📋 Rules — Jester AI Agent
 
 **🕒 Last updated:** 2026-01-12T00:00:00Z  
 **📂 Location:** `data/rules.json` is the authoritative machine-readable source. This human-friendly file is regenerated automatically after each final poll.
