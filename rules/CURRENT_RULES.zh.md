@@ -2,7 +2,7 @@
 🌐 语言：<a href="../README.md">English 🇺🇸</a> | <a href="../README.zh.md">中文 🇨🇳</a>
 </td></tr><tr><td align="right">
 <a href="../README.zh.md">📘 中文首页</a> &nbsp; • &nbsp;
-<a href="../rules/rulesE.zh.md">📜 规则说明（中文）</a> &nbsp; • &nbsp;
+<a href="../rules/rules.zh.md">📜 规则说明（中文）</a> &nbsp; • &nbsp;
 <a href="../CURRENT_RULES.zh.md">✅ 当前规则（中文）</a>
 </td></tr></table>
 
