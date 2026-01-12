@@ -69,8 +69,6 @@ async function postPollTweet(spec: PollSpec) {
  * - only the first valid vote per user counts
  */
 async function collectVotes(tweetId: string) {
-  // twitter-api-v2: you can search replies like this:
-  // we search tweets with "conversation_id:tweetId"
   const query = `conversation_id:${tweetId}`;
 
   const paginator = await xClient.v2.search(query, {
@@ -125,7 +123,6 @@ function pickWinner(counts: Map<number, number>): number | null {
  * This makes calling `runPoll()` from `index.ts` safe.
  */
 export async function runPoll(mode?: "poll_post" | "poll_close") {
-  // If mode is not specified, decide based on existing poll spec.
   if (!mode) {
     const existing = loadPollSpec();
     if (!existing || existing.status !== "open") {
@@ -162,7 +159,6 @@ export async function runPoll(mode?: "poll_post" | "poll_close") {
     return;
   }
 
-  // Check close time
   const now = Date.now();
   const closeAt = new Date(spec.closesAt).getTime();
   if (now < closeAt) {
@@ -182,7 +178,6 @@ export async function runPoll(mode?: "poll_post" | "poll_close") {
   });
 
   if (!winner) {
-    // No votes — close without action
     spec.status = "closed";
     spec.winner = {
       optionId: -1,
