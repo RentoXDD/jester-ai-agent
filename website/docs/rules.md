@@ -11,17 +11,17 @@ This document is the authoritative, human-readable description of the governance
 ## 📚 Table of contents
 
 - [📋 Current Rules ](./current_rules.md)  
-- [🏛 Governance Overview](#-governance-overview)  
-- [🗳 Two-stage Weekly Poll (Flow)](#-two-stage-weekly-poll-flow)  
-- [📐 Rule Schema](#-rule-schema)  
-- [✅ Current Active Rules (authoritative)](#-current-active-rules-authoritative)  
-- [📝 Change Log](#-change-log)  
-- [💡 How to Propose Changes](#-how-to-propose-changes)  
-- [🔢 How Votes Are Counted](#-how-votes-are-counted)  
-- [📌 Pinning & Permissions](#-pinning--permissions)  
-- [⚙️ Applying Rules & Automation](#-applying-rules--automation)  
-- [🧪 Testing / Debugging Tips](#-testing--debugging-tips)  
-- [🔧 Appendix: Examples & Scripts](#-appendix-examples--scripts)
+- [🏛 Governance Overview](#governance-overview)  
+- [🗳 Two-stage Weekly Poll (Flow)](#two-stage-weekly-poll-flow)  
+- [📐 Rule Schema](#rule-schema)  
+- [✅ Current Active Rules (authoritative)](#current-active-rules-authoritative)  
+- [📝 Change Log](#change-log)  
+- [💡 How to Propose Changes](#how-to-propose-changes)  
+- [🔢 How Votes Are Counted](#how-votes-are-counted)  
+- [📌 Pinning & Permissions](#pinning--permissions)  
+- [⚙️ Applying Rules & Automation](#applying-rules--automation)  
+- [🧪 Testing / Debugging Tips](#testing--debugging-tips)  
+- [🔧 Appendix: Examples & Scripts](#appendix-examples--scripts)
 
 ---
 
@@ -76,3 +76,4 @@ Rules are stored in JSON. Example `data/rules.json`:
     }
   ]
 }
+
