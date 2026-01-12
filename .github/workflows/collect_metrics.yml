@@ -1,9 +1,9 @@
-name: Collect & Improve Every 15 Minutes
+name: Collect & Improve Every 30 Minutes
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"   # every 15 minutes (UTC)
+    - cron: "*/30 * * * *"   # every 30 minutes (UTC)
 
 concurrency:
   group: jester-agent-global
