@@ -1,5 +1,7 @@
 # 🤡 Jester AI Agent
 🌐 Languages: English 🇺🇸| [中文](README_zh.md) 🇨🇳
+
+
 <p align="right">
 <a href="./README.md">📘 README</a> &nbsp; • &nbsp;
 <a href="./rules/README.md">📜 Rules</a> &nbsp; • &nbsp;
