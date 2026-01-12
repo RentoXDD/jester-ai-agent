@@ -27,7 +27,7 @@ jobs:
       - name: Copy docs into website/docs
         run: |
           mkdir -p website/docs
-          cp README.md website/docs/intro.md || true
+          # не копируем README.md, чтобы не перезаписать ваши правки
           cp rules/Rules.md website/docs/rules.md || true
           cp rules/CURRENT_RULES.md website/docs/current_rules.md || true
 
