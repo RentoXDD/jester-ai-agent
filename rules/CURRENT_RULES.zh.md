@@ -1,7 +1,7 @@
 <table width="100%"><tr><td align="left">
-🌐 语言：<a href="../README.md">English 🇺🇸</a> | <a href="..README_zh.md">中文 🇨🇳</a>
+🌐 语言：<a href="../README.md">English 🇺🇸</a> | <a href="../README_zh.md">中文 🇨🇳</a>
 </td></tr><tr><td align="right"> &nbsp; • &nbsp;
-<a href="../README.zh.md">📘 中文首页</a> &nbsp; • &nbsp;
+<a href="../README_zh.md">📘 中文首页</a> &nbsp; • &nbsp;
 <a href="../rules/rules.zh.md">📜 规则说明（中文）
 </td></tr></table>
 
