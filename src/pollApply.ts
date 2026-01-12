@@ -1,29 +1,46 @@
 // src/pollApply.ts
+// Save/load poll spec and apply winning options.
+// applyWinningOption supports ADD_RULE:, REMOVE_RULE:, and CUSTOM:.
+
 import fs from "node:fs";
 import path from "node:path";
-import { PATHS } from "./config.js";
 import { applyGovernanceWinner } from "./rulesEngine.js";
 import { log } from "./logger.js";
 
 export type PollOption = {
-  id: number; // 1..5
+  id: number; // 1..N
   text: string; // human-readable text
-  action?: string; // e.g. "ADD_RULE:..." or "REMOVE_RULE:..."
+  action?: string; // e.g. "ADD_RULE:...", "REMOVE_RULE:...", or "CUSTOM:..."
+  authorId?: string; // optional: who suggested the option (traceability)
 };
 
 export type PollSpec = {
   version: number;
-  pollId: string; // identifier (timestamp or uuid)
-  tweetId?: string; // poll tweet id
-  createdAt: string; // ISO
-  closesAt: string; // ISO (+24h)
-  options: PollOption[]; // 1..5
-  status: "open" | "closed";
-  winner?: {
-    optionId: number;
-    action?: string;
-    decidedAt: string;
-    details?: any;
+  pollId: string;
+  createdAt: string;
+  // stage1 announcement metadata
+  stage1?: {
+    tweetId?: string;
+    createdAt?: string;
+    closesAt?: string;
+    status?: "open" | "closed";
+  };
+  // stage2 final poll metadata
+  stage2?: {
+    tweetId?: string;
+    createdAt?: string;
+    closesAt?: string;
+    status?: "open" | "closed";
+    options?: PollOption[];
+  };
+  // final result
+  final?: {
+    decidedAt?: string;
+    winner?: {
+      optionId: number;
+      action?: string;
+      details?: any;
+    };
   };
 };
 
@@ -38,60 +55,52 @@ export function loadPollSpec(): PollSpec | null {
     if (!fs.existsSync(POLL_SPEC_FILE)) return null;
     const raw = fs.readFileSync(POLL_SPEC_FILE, "utf-8");
     return JSON.parse(raw) as PollSpec;
-  } catch {
+  } catch (err) {
+    log("ERROR", "Failed to load poll spec", { error: String(err ?? "") });
     return null;
   }
 }
 
 export function savePollSpec(spec: PollSpec) {
-  ensureDir(POLL_SPEC_FILE);
-  fs.writeFileSync(POLL_SPEC_FILE, JSON.stringify(spec, null, 2), "utf-8");
+  try {
+    ensureDir(POLL_SPEC_FILE);
+    fs.writeFileSync(POLL_SPEC_FILE, JSON.stringify(spec, null, 2), "utf-8");
+  } catch (err) {
+    log("ERROR", "Failed to save poll spec", { error: String(err ?? "") });
+    throw err;
+  }
 }
 
 /**
  * Applies the winning option:
- * - if action starts with ADD_RULE: -> adds a rule
- * - if action starts with REMOVE_RULE: -> disables a rule (enabled=false)
+ * - if action starts with ADD_RULE: -> adds a rule via rulesEngine
+ * - if action starts with REMOVE_RULE: -> removes/disables a rule via rulesEngine
+ * - if action starts with CUSTOM: -> do NOT auto-apply arbitrary text; record selection and return details
  * Returns a result object for logs/memory.
  */
 export function applyWinningOption(spec: PollSpec, winnerOptionId: number) {
-  const opt = spec.options.find((o) => o.id === winnerOptionId);
+  const opt = (spec.stage2?.options ?? []).find((o) => o.id === winnerOptionId) ?? null;
   if (!opt) {
     return { ok: false, reason: `Option ${winnerOptionId} not found` };
   }
 
   const action = (opt.action ?? "").trim();
   if (!action) {
-    // No action — just record winner without changes
     return { ok: true, action: "NO_ACTION", details: { optionId: winnerOptionId, text: opt.text } };
   }
 
-  const res = applyGovernanceWinner(action);
-  return { ok: res.ok, action: res.action ?? "UNKNOWN", details: res.details };
-}
+  // Support CUSTOM: by returning details but not trying to call governance engine.
+  if (action.startsWith("CUSTOM:")) {
+    const payload = action.substring("CUSTOM:".length);
+    return { ok: true, action: "CUSTOM", details: { text: payload } };
+  }
 
-/**
- * Closes the poll: records the winner and applies the action.
- */
-export function closeAndApply(spec: PollSpec, winnerOptionId: number) {
-  const now = new Date().toISOString();
-  const applied = applyWinningOption(spec, winnerOptionId);
-
-  spec.status = "closed";
-  spec.winner = {
-    optionId: winnerOptionId,
-    action: spec.options.find((o) => o.id === winnerOptionId)?.action,
-    decidedAt: now,
-    details: applied,
-  };
-
-  savePollSpec(spec);
-
-  log("INFO", "Poll closed & applied", {
-    pollId: spec.pollId,
-    winnerOptionId,
-    applied,
-  });
-
-  return applied;
+  // Known actions
+  try {
+    const res = applyGovernanceWinner(action);
+    return { ok: res.ok, action: res.action ?? "UNKNOWN", details: res.details };
+  } catch (err: any) {
+    log("ERROR", "applyGovernanceWinner failed", { action, error: String(err?.message ?? err) });
+    return { ok: false, action: "ERROR", details: { error: String(err?.message ?? err) } };
+  }
 }
