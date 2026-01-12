@@ -1,71 +1,42 @@
-name: Poll Monitor — Close / Apply (efficient)
+name: Poll Monitor — Check & Dispatch (no-X)
 
 on:
   schedule:
-    - cron: "0 * * * *"   # every hour
+    - cron: "0 * * * *"  # every hour
   workflow_dispatch:
 
 permissions:
-  contents: read   # check file
-  # workflow below will need write permissions when it runs (commit/push)
-  # but we don't give write here globally for the check step. monitor job will use GITHUB_TOKEN.
+  contents: read
+  actions: write    # needed to create workflow_dispatch
 
 jobs:
-  check:
+  check-and-dispatch:
     runs-on: ubuntu-latest
-    outputs:
-      should_run: ${{ steps.check.outputs.should_run }}
     steps:
-      - name: Quick check: should we run monitor?
-        id: check
+      - name: Quick read of poll.json and decide
+        id: decide
         uses: actions/github-script@v6
         with:
           script: |
             const path = "data/poll.json";
             const owner = context.repo.owner;
             const repo = context.repo.repo;
+
             try {
-              const res = await github.rest.repos.getContent({
-                owner, repo, path
-              });
-              const contentEncoded = res.data.content;
-              const buff = Buffer.from(contentEncoded, "base64");
+              const res = await github.rest.repos.getContent({ owner, repo, path });
+              const buff = Buffer.from(res.data.content, "base64");
               const json = JSON.parse(buff.toString("utf-8"));
 
-              // Normalize many possible formats:
-              // - look for stage1.createdAt or poll.pollCreatedAt or stage1.closesAt
-              let stage1 = (json.stage1) ? json.stage1 : (json.poll && json.poll.stage1 ? json.poll.stage1 : null);
-              let pollCreatedAt = json.pollCreatedAt || (json.poll && json.poll.pollCreatedAt) || null;
-
-              const now = Date.now();
-
-              // If there is an explicit numeric pollCreatedAt, use it
-              if (pollCreatedAt) {
-                const createdAt = new Date(pollCreatedAt).getTime();
-                if (isNaN(createdAt)) {
-                  // try parse ISO
-                  const parsed = Date.parse(pollCreatedAt);
-                  if (!isNaN(parsed)) createdAt = parsed;
-                }
-                const ageMs = now - createdAt;
-                // if >= 24h => run
-                if (ageMs >= 24 * 3600 * 1000) {
-                  return { should_run: "true" };
-                } else {
-                  return { should_run: "false" };
-                }
-              }
-
-              // If stage1 exists, examine its createdAt or closesAt
+              const stage1 = json.stage1 || (json.poll && json.poll.stage1) || null;
               if (!stage1) {
-                // no stage1 -> nothing to close
+                core.info("No stage1 present -> nothing to do");
                 return { should_run: "false" };
               }
 
-              // prefer closesAt
+              // prefer explicit closesAt
               if (stage1.closesAt) {
                 const closes = Date.parse(stage1.closesAt);
-                if (!isNaN(closes) && now >= closes) {
+                if (!isNaN(closes) && Date.now() >= closes) {
                   return { should_run: "true" };
                 } else {
                   return { should_run: "false" };
@@ -74,51 +45,33 @@ jobs:
 
               if (stage1.createdAt) {
                 const created = Date.parse(stage1.createdAt);
-                if (!isNaN(created) && (now - created) >= 24 * 3600 * 1000) {
+                if (!isNaN(created) && (Date.now() - created) >= 24*3600*1000) {
                   return { should_run: "true" };
                 }
               }
 
-              // fallback: nothing to do
               return { should_run: "false" };
             } catch (err) {
-              // if file not found or parse error, we skip heavy job
-              core.info("Quick-check: could not read/parse poll.json — skipping monitor. Error: " + String(err));
+              core.info("Quick-check failed; skipping heavy job: " + String(err));
               return { should_run: "false" };
             }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  monitor:
-    needs: check
-    if: needs.check.outputs.should_run == 'true'
-    runs-on: ubuntu-latest
-    concurrency:
-      group: "jester-poll-monitor"
-      cancel-in-progress: false
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Trigger apply_poll (only if needed)
+        if: steps.decide.outputs.should_run == 'true'
+        uses: actions/github-script@v6
         with:
-          fetch-depth: 0
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install deps
-        run: npm ci
-
-      - name: Run poll monitor (heavy mode)
-        env:
-          MODE: poll
-          POLL_ACTION: poll_close
-          X_APP_KEY: ${{ secrets.X_APP_KEY }}
-          X_APP_SECRET: ${{ secrets.X_APP_SECRET }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
-          GH_PAT: ${{ secrets.GH_PAT }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # intentionally DO NOT include GROQ_API_KEY here
-        run: npm run dev
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            // workflow file name of the heavy job
+            const workflow_id = 'apply_poll.yml';
+            // dispatch to main
+            await github.rest.actions.createWorkflowDispatch({
+              owner,
+              repo,
+              workflow_id,
+              ref: 'main',
+              inputs: {
+                reason: 'stage1_closed_by_monitor'
+              }
+            });
+            core.info("Dispatched apply_poll workflow");
