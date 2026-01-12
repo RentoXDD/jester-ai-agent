@@ -17,6 +17,9 @@ import { runPoll } from "./poll.js";
 /**
  * Create a safe default poll spec if it does not exist. This prevents runtime
  * errors when the code expects data/poll.json to be present.
+ *
+ * NOTE: default spec is created with status: "closed" so that runPoll() will
+ * choose the posting branch (poll_post) and create a real poll tweet.
  */
 function ensureDefaultPollJson() {
   try {
@@ -30,7 +33,8 @@ function ensureDefaultPollJson() {
         pollId: String(Date.now()),
         createdAt: now,
         closesAt,
-        status: "open",
+        // IMPORTANT: default is closed so runPoll() will post a new poll
+        status: "closed",
         options: [
           { id: 1, text: "Add rule: no emojis", action: "ADD_RULE:No emojis." },
           { id: 2, text: "Add rule: no hashtags unless needed", action: "ADD_RULE:No hashtags unless absolutely needed." },
@@ -38,7 +42,7 @@ function ensureDefaultPollJson() {
           { id: 4, text: "Remove rule: end-ribbit", action: "REMOVE_RULE:end-ribbit" },
           { id: 5, text: "Add rule: replies more aggressive", action: "ADD_RULE:Replies should be more aggressive and punchy." },
         ],
-        // set tweetId to null so poll close won't try to talk to Twitter if we don't want it
+        // keep tweetId null until we actually post
         tweetId: null
       };
       fs.writeFileSync(pollPath, JSON.stringify(spec, null, 2), "utf8");
