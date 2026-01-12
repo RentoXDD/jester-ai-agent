@@ -169,7 +169,4 @@ As long as automation exists, **Jester continues to function**.
 | Dependency issue | Rebuild & retry |
 | Rule conflicts | Resolved by next vote |
 
----
-
-## 📦 Repository Structure
 
