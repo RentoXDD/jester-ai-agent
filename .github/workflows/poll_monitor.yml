@@ -1,70 +1,109 @@
-name: Poll Monitor — Check & Dispatch (no-X)
+name: Poll Monitor — Check & Dispatch (every 5m, no-X)
 
 on:
   schedule:
-    - cron: "0 * * * *"  # every hour
+    - cron: "*/5 * * * *"   # every 5 minutes
   workflow_dispatch:
 
 permissions:
   contents: read
-  actions: write    # needed to create workflow_dispatch
+  actions: write   # needed to dispatch apply_poll workflow
 
 jobs:
   check-and-dispatch:
     runs-on: ubuntu-latest
+    concurrency:
+      group: "jester-poll-monitor"
+      cancel-in-progress: false
+    outputs:
+      should_run: ${{ steps.decide.outputs.should_run }}
     steps:
-      - name: Quick read of poll.json and decide
+      - name: Quick read of data/poll.json and decide
         id: decide
         uses: actions/github-script@v6
         with:
           script: |
-            const path = "data/poll.json";
             const owner = context.repo.owner;
             const repo = context.repo.repo;
+            const path = "data/poll.json";
+            const APPLY_WORKFLOW = "apply_poll.yml"; // heavy workflow file name
 
             try {
+              // read file (cheap, single API call)
               const res = await github.rest.repos.getContent({ owner, repo, path });
               const buff = Buffer.from(res.data.content, "base64");
               const json = JSON.parse(buff.toString("utf-8"));
 
+              // normalize stage1 object
               const stage1 = json.stage1 || (json.poll && json.poll.stage1) || null;
               if (!stage1) {
                 core.info("No stage1 present -> nothing to do");
-                return { should_run: "false" };
+                return { should_run: "false", reason: "no_stage1" };
               }
 
-              // prefer explicit closesAt
+              // if status exists and not open => already closed/processing
+              const sstatus = (stage1.status || "").toLowerCase();
+              if (sstatus && sstatus !== "open") {
+                core.info(`Stage1 status is '${sstatus}' -> skip`);
+                return { should_run: "false", reason: "status_not_open" };
+              }
+
+              // compute closesAt (prefer explicit closesAt, otherwise createdAt + 24h)
+              let closesAtMs = null;
               if (stage1.closesAt) {
-                const closes = Date.parse(stage1.closesAt);
-                if (!isNaN(closes) && Date.now() >= closes) {
-                  return { should_run: "true" };
-                } else {
-                  return { should_run: "false" };
-                }
-              }
-
-              if (stage1.createdAt) {
+                const c = Date.parse(stage1.closesAt);
+                if (!isNaN(c)) closesAtMs = c;
+              } else if (stage1.createdAt) {
                 const created = Date.parse(stage1.createdAt);
-                if (!isNaN(created) && (Date.now() - created) >= 24*3600*1000) {
-                  return { should_run: "true" };
-                }
+                if (!isNaN(created)) closesAtMs = created + 24*3600*1000;
+              } else if (json.pollCreatedAt) {
+                const c2 = Date.parse(json.pollCreatedAt);
+                if (!isNaN(c2)) closesAtMs = c2 + 24*3600*1000;
               }
 
-              return { should_run: "false" };
+              if (closesAtMs === null) {
+                core.info("No usable closesAt/createdAt -> skip");
+                return { should_run: "false", reason: "no_time" };
+              }
+
+              const now = Date.now();
+              const SAFETY_MS = (process.env.CHECK_SAFETY_SECONDS ? Number(process.env.CHECK_SAFETY_SECONDS)*1000 : 60*1000);
+
+              if (now < (closesAtMs + SAFETY_MS)) {
+                core.info(`Not yet time: now=${new Date(now).toISOString()}, closesAt=${new Date(closesAtMs).toISOString()}`);
+                return { should_run: "false", reason: "not_yet" };
+              }
+
+              // ensure apply_poll is not already running or queued
+              const runsRes = await github.rest.actions.listWorkflowRuns({
+                owner, repo, workflow_id: APPLY_WORKFLOW, per_page: 10
+              });
+              const runs = runsRes.data.workflow_runs || [];
+              const active = runs.find(r => ['queued','in_progress','waiting'].includes((r.status || '').toLowerCase()));
+              if (active) {
+                core.info("apply_poll workflow already running/queued -> skip dispatch");
+                return { should_run: "false", reason: "apply_running" };
+              }
+
+              // all checks passed -> we should dispatch heavy workflow
+              core.info("Poll closed -> dispatch apply_poll");
+              return { should_run: "true", reason: "closed" };
             } catch (err) {
               core.info("Quick-check failed; skipping heavy job: " + String(err));
-              return { should_run: "false" };
+              return { should_run: "false", reason: "error" };
             }
-      - name: Trigger apply_poll (only if needed)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CHECK_SAFETY_SECONDS: "60"  # optional safety buffer (seconds)
+
+      - name: Dispatch apply_poll workflow (only if needed)
         if: steps.decide.outputs.should_run == 'true'
         uses: actions/github-script@v6
         with:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            // workflow file name of the heavy job
-            const workflow_id = 'apply_poll.yml';
-            // dispatch to main
+            const workflow_id = 'apply_poll.yml'; // heavy workflow name
             await github.rest.actions.createWorkflowDispatch({
               owner,
               repo,
@@ -75,3 +114,5 @@ jobs:
               }
             });
             core.info("Dispatched apply_poll workflow");
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
