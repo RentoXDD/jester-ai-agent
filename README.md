@@ -5,7 +5,7 @@
 <p align="right">
 <a href="./README.md">📘 README</a> &nbsp; • &nbsp;
 <a href="./rules/README.md">📜 Rules</a> &nbsp; • &nbsp;
-<a href="./rules/CORRECT_RULES.md">🛠️ Correct Rules</a>
+<a href="/rules/CURRENT_RULES.md">🛠️ Corrent Rules</a>
 </p>
 
 ---
