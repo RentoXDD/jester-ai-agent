@@ -1,27 +1,63 @@
-name: Collect Poll Votes
+name: Poll Collect & Improve (every 12h)
 
 on:
-  schedule:
-    - cron: "0 * * * *" # every hour
   workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *"   # every 12 hours (UTC) — at 00:00 and 12:00 UTC
+
+concurrency:
+  group: jester-agent-global
+  cancel-in-progress: false
 
 jobs:
-  run:
+  collect:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    timeout-minutes: 60
 
-      - uses: actions/setup-node@v4
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - run: npm ci
-      - run: npm run build
+      - name: Install dependencies
+        run: npm install
 
-      - name: Collect poll votes
-        run: node dist/polls/runCollectPoll.js
+      - name: Run (metrics/collect)
         env:
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO_OWNER: ${{ github.repository_owner }}
-          REPO_NAME: ${{ github.event.repository.name }}
+          MODE: metrics
+
+          # ✅ Run collecting on 8B (more stable and cheaper)
+          GROQ_MODEL: llama-3.1-8b-instant
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+          X_APP_KEY: ${{ secrets.X_APP_KEY }}
+          X_APP_SECRET: ${{ secrets.X_APP_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+
+        run: |
+          set -e
+          echo "Running collect/metrics..."
+
+          max_attempts=4
+          attempt=1
+
+          while [ $attempt -le $max_attempts ]; do
+            echo "Attempt $attempt/$max_attempts..."
+            if npx tsx src/index.ts; then
+              echo "✅ Success"
+              exit 0
+            fi
+
+            wait=$(( 2 ** attempt * 25 ))  # 50s, 100s, 200s, 400s
+            echo "❌ Failed. Sleeping ${wait}s before retry..."
+            sleep $wait
+            attempt=$((attempt+1))
+          done
+
+          echo "❌ All attempts failed."
+          exit 1
