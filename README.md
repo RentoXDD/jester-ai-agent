@@ -1,26 +1,26 @@
 # 🤡 Jester AI Agent
-🌐 Languages: English 🇺🇸| [中文](README_zh.md) 🇨🇳
 
-
-<p align="right">
+<table width="100%"><tr><td align="left">
+🌐 Languages: <a href="./README.md">English 🇺🇸</a> | <a href="./rules/README.zh.md">中文 🇨🇳</a>
+</td></tr><tr><td align="right">
 <a href="./README.md">📘 README</a> &nbsp; • &nbsp;
 <a href="./rules/README.md">📜 Rules</a> &nbsp; • &nbsp;
-<a href="/rules/CURRENT_RULES.md">🛠️ Corrent Rules</a>
-</p>
+<a href="./rules/CURRENT_RULES.md">✅ Current Rules</a>
+</td></tr></table>
 
 ---
 
-
 ## 📌 Navigation
-- [What Jester Is](#-what-jester-is)
-- [Governance & Freedom of Choice](#-governance--freedom-of-choice)
-- [Autonomous Behavior](#-autonomous-behavior)
-- [Self-Healing & Error Recovery](#-self-healing--error-recovery)
-- [Security & Trust Model](#-security--trust-model)
-- [Token Economics](#-token-economics)
-- [Autonomy Explained](#-autonomy-explained)
-- [Failures & Edge Cases](#-failures--edge-cases)
-- [Repository Structure](#-repository-structure)
+
+- [What Jester Is](#-what-jester-is)  
+- [Governance & Freedom of Choice](#-governance--freedom-of-choice)  
+- [Autonomous Behavior](#-autonomous-behavior)  
+- [Self-Healing & Error Recovery](#-self-healing--error-recovery)  
+- [Security & Trust Model](#-security--trust-model)  
+- [Token Economics](#-token-economics)  
+- [Autonomy Explained](#-autonomy-explained)  
+- [Failures & Edge Cases](#-failures--edge-cases)  
+- [Repository Structure](#-repository-structure)  
 - [Philosophy](#-philosophy)
 
 ---
@@ -61,23 +61,19 @@ Jester is governed through public polls.
 
 The community can:
 
-- ➕ **Add new behavioral rules**
-- ✏️ **Replace existing rules**
+- ➕ **Add new behavioral rules**  
+- ✏️ **Replace existing rules**  
 - ❌ **Completely remove existing rules**
 
-There are no permanent constraints.
+There are no permanent constraints. Rules can be introduced, rewritten, or erased entirely — meaning the agent’s personality is **never final**.
 
-Rules can be introduced, rewritten, or erased entirely — meaning the agent’s personality is **never final**.
-
-This is not “AI alignment”.  
-This is **collective freedom of decision-making**.
+This is not “AI alignment”. This is **collective freedom of decision-making**.
 
 The AI becomes what the community decides it should be.
 
 ### Rule Stability
 
-If a rule change causes instability, the system will attempt to recover automatically.
-
+If a rule change causes instability, the system will attempt to recover automatically.  
 If the issue persists, the next community vote can remove or replace the problematic rule.
 
 ---
@@ -108,9 +104,7 @@ If something breaks:
 - logic regression  
 - unexpected exceptions  
 
-The system automatically attempts to detect, diagnose, and repair itself.
-
-Recovery is handled without centralized human control.
+The system automatically attempts to detect, diagnose, and repair itself. Recovery is handled without centralized human control.
 
 ---
 
@@ -137,19 +131,19 @@ The AI becomes trust-minimized and autonomous.
 
 ### Developer Tokens
 
-- **100% of developer tokens are locked into staking**
-- No developer selling
+- **100% of developer tokens are locked into staking**  
+- No developer selling  
 - No hidden extraction mechanisms
 
 ### Revenue Model
 
-- Jester earns **only from pump.fun trading fees**
-- No subscriptions
-- No ads
+- Jester earns **only from pump.fun trading fees**  
+- No subscriptions  
+- No ads  
 - No external monetization
 
 Fee allocation:
-- Part goes to **system maintenance**
+- Part goes to **system maintenance**  
 - Part is sent to the **creator as royalties**, without granting any control over the system
 
 All value flows are transparent.
@@ -180,26 +174,3 @@ As long as automation exists, **Jester continues to function**.
 
 ## 📦 Repository Structure
 
-agent/          → autonomous control logic  
-src/            → core runtime & rule engine  
-polls/          → governance & voting  
-.github/        → automation & CI  
-data/           → memory, rules, state  
-
----
-
-## 🚀 Philosophy
-
-Jester is not a product.  
-Not a service.  
-Not a managed bot.
-
-It is an **experiment in autonomous digital freedom**.
-
-No owners.  
-No admins.  
-No backdoors.
-
-Only code, rules, and collective choice.
-
-ribbit.
