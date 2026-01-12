@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "pollId": "1768203959070",
+  "createdAt": "2026-01-12T07:45:59Z",
+  "stage1": {
+    "tweetId": "12345",
+    "createdAt": "2026-01-12T07:45:59Z",
+    "closesAt": "2026-01-13T07:45:59Z",
+    "status": "closed"
+  },
+  "stage2": {
+    "tweetId": "67890",
+    "createdAt": "2026-01-13T08:00:00Z",
+    "closesAt": "2026-01-14T08:00:00Z",
+    "status": "closed",
+    "options": [
+      {"id":1,"text":"Add rule: no emojis","action":"ADD_RULE:No emojis."},
+      {"id":2,"text":"Remove rule: format-short","action":"REMOVE_RULE:format-short"}
+    ]
+  },
+  "final": {
+    "decidedAt": "2026-01-14T08:20:00Z",
+    "winner": { "optionId": 2, "action": "REMOVE_RULE:format-short" }
+  }
+}
