@@ -1,49 +1,38 @@
-name: Weekly Poll & Governance
+name: Weekly Poll — Post Stage1
 
 on:
   schedule:
-    - cron: "0 * * * *" # every hour
+    - cron: "0 0 * * 0"   # every Sunday 00:00 UTC (раз в неделю)
   workflow_dispatch:
 
 jobs:
-  poll:
+  post:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    concurrency:
+      group: "jester-weekly-post"
+      cancel-in-progress: false
+    timeout-minutes: 30
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
 
-      - name: Use Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
 
       - name: Install deps
-        run: npm install
+        run: npm ci
 
-      - name: Run Poll Mode
+      - name: Run weekly post (create Stage1)
         env:
           MODE: poll
-
-          # X API
+          POLL_ACTION: poll_post
           X_APP_KEY: ${{ secrets.X_APP_KEY }}
           X_APP_SECRET: ${{ secrets.X_APP_SECRET }}
           X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
-
-          # optional if you want LLM inside poll generation later
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}         # если генерация с GROQ
           GROQ_MODEL: ${{ secrets.GROQ_MODEL }}
-
-          # Poll config
-          POLL_WINDOW_HOURS: "24"
-
-          # Git push auth
           GH_PAT: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
         run: npm run dev
