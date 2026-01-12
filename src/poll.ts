@@ -1,4 +1,8 @@
 // src/poll.ts
+// Robust poll runner: handles missing poll spec gracefully and supports automatic mode selection.
+// If runPoll() is called without an explicit sub-mode, the function decides whether to post a new poll
+// or close an existing one based on whether a poll spec exists and its status.
+
 import { xClient } from "./xClient.js";
 import { postTweet } from "./poster.js";
 import { log } from "./logger.js";
@@ -32,7 +36,6 @@ function makeDefaultPollSpec(): PollSpec {
  * If someone writes "2 2 2 2" -> it's still a single vote (deduped per user).
  */
 function extractVote(text: string): number | null {
-  // Find the first digit 1..5
   const m = text.match(/[1-5]/);
   if (!m) return null;
   const n = Number(m[0]);
@@ -112,7 +115,26 @@ function pickWinner(counts: Map<number, number>): number | null {
   return best;
 }
 
-export async function runPoll(mode: "poll_post" | "poll_close") {
+/**
+ * Run poll logic.
+ * - If `mode` is provided it must be "poll_post" or "poll_close".
+ * - If `mode` is omitted, the function decides:
+ *    * if no poll spec exists or it is not open => do poll_post
+ *    * otherwise => do poll_close
+ *
+ * This makes calling `runPoll()` from `index.ts` safe.
+ */
+export async function runPoll(mode?: "poll_post" | "poll_close") {
+  // If mode is not specified, decide based on existing poll spec.
+  if (!mode) {
+    const existing = loadPollSpec();
+    if (!existing || existing.status !== "open") {
+      mode = "poll_post";
+    } else {
+      mode = "poll_close";
+    }
+  }
+
   if (mode === "poll_post") {
     const existing = loadPollSpec();
     if (existing && existing.status === "open") {
@@ -124,14 +146,21 @@ export async function runPoll(mode: "poll_post" | "poll_close") {
     return;
   }
 
-  // mode === poll_close
+  // mode === "poll_close"
   const spec = loadPollSpec();
-  if (!spec) throw new Error("No poll.json found to close.");
+  if (!spec) {
+    // Graceful handling: do not throw here, just log and exit.
+    log("WARN", "No poll spec found to close; nothing to do.");
+    return;
+  }
   if (spec.status !== "open") {
     log("INFO", "Poll already closed; skip", { pollId: spec.pollId });
     return;
   }
-  if (!spec.tweetId) throw new Error("Poll is missing tweetId.");
+  if (!spec.tweetId) {
+    log("ERROR", "Poll is missing tweetId; cannot collect votes", { pollId: spec.pollId });
+    return;
+  }
 
   // Check close time
   const now = Date.now();
@@ -166,4 +195,3 @@ export async function runPoll(mode: "poll_post" | "poll_close") {
 
   closeAndApply(spec, winner);
 }
-
