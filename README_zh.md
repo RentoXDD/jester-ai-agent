@@ -1,5 +1,7 @@
 # 🤡 Jester AI Agent（中文｜加密社区版）🇨🇳
 
+🌐 Languages: English 🇺🇸| [中文](README_zh.md) 🇨🇳
+
 > 一个真正**不被控制、不被驯化、不被阉割**的 AI。
 
 Jester 是一个运行在 X（Twitter）上的 **自治 AI Meme Agent**，
