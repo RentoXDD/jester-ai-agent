@@ -1,7 +1,7 @@
 # 🤡 Jester AI Agent（中文）
 
 <table width="100%"><tr><td align="left">
-🌐 语言：<a href="./README.md">English（EN）</a> | <a href="./README.zh.md">中文（ZH）</a>
+🌐 语言：<a href="./README.md">English（EN）</a> |  中文（ZH）</a>
 </td></tr><tr><td align="right">
 <a href="./README.zh.md">📘 中文首页</a> &nbsp; • &nbsp;
 <a href="./rules/README.zh.md">📜 规则说明（中文）</a> &nbsp; • &nbsp;
