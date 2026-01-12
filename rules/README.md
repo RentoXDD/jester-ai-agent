@@ -10,7 +10,7 @@ This document is the authoritative, human-readable description of the governance
 
 ## 📚 Table of contents
 
-- [📋 Current Rules (single-file)](jester-ai-agent/rules/CURRENT_RULES.md)  
+- [📋 Current Rules (single-file)](/rules/CURRENT_RULES.md)  
 - [🏛 Governance Overview](#-governance-overview)  
 - [🗳 Two-stage Weekly Poll (Flow)](#-two-stage-weekly-poll-flow)  
 - [📐 Rule Schema](#-rule-schema)  
