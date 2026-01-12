@@ -3,7 +3,6 @@
 <table width="100%"><tr><td align="left">
 🌐 Languages: English 🇺🇸</a> | <a href="README_zh.md">中文 🇨🇳</a>
 </td></tr><tr><td align="right">
-<a href="./README.md">📘 README</a> &nbsp; • &nbsp;
 <a href="./rules/Rules.md">📜 Rules</a> &nbsp; • &nbsp;
 <a href="./rules/CURRENT_RULES.md">✅ Current Rules</a>
 </td></tr></table>
