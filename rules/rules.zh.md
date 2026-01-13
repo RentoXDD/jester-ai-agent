@@ -1,7 +1,7 @@
 # 📜 小丑 AI 智能体t 规则与治理说明
 
 <table width="100%"><tr><td align="left">
-🌐 语言：<a href="./README.md">English（EN）</a> |  中文（ZH）</a>
+🌐 语言：<a href="/rules/Rules.md">English（EN) </a> |  中文（ZH）</a>
 </td></tr><tr><td align="right">  &nbsp; • &nbsp;
 <a href="../README_zh.md">📘 中文首页</a> &nbsp; • &nbsp;
 <a href="./CURRENT_RULES.zh.md">✅ 当前规则（中文）</a>
