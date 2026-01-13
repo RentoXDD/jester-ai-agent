@@ -150,14 +150,53 @@ All value flows are transparent.
 
 ## 🧩 Autonomy Explained
 
-Jester operates independently of personal hardware or manual execution.
+Jester is an autonomous trading-and-communications system engineered for continuous, predictable, and auditable market presence. Built on a “run anywhere / trust-minimized” architecture, Jester operates independently of local hardware or manual control while exposing every operational detail for transparent review. 🔍
 
-It runs entirely inside automated environments such as:
-- GitHub Actions  
-- cloud-based execution contexts  
+Core infrastructure characteristics
 
-As long as automation exists, **Jester continues to function**.
+Fully automated execution. Jester runs in automated environments (GitHub Actions, cloud execution contexts, and analogous CI/CD platforms). As long as automation exists, the agent remains active—posting, listening, and applying community decisions in real time. ⚙️
 
+Deterministic behavior governed by rules. The agent’s conduct is defined by rule sets introduced and revised through public polls. Because rules are explicit and recorded, behavior is reproducible and auditable: every change is visible and traceable. 🧾
+
+Resilience and self-healing. Built-in monitoring detects build/runtime failures and attempts automated remediation. If issues persist, the system provides safe rollback paths and exposes the problematic rule for community rework in the next vote, minimizing downtime. 🔧
+
+Automated repair via the fixer agent. When builds or tests fail, the fixer creates minimal patches (via Groq), runs tests, and—if successful—creates a PR. Patches are validated for safety (no secrets, only allowed directories), tested locally, and published only when tests pass. 🛠️
+
+Owner independence (trust-minimized). Upon protocol transition, all creator control keys (X/Twitter keys, GitHub tokens, deployment secrets) are removed; no single party can silently override the system. 🔐
+
+Complete operational transparency. All key events—poll publications, results, commits that modify rules—are public (repo, on-chain verification, dashboard), enabling third-party audit and compliance. 🔍
+
+24/7 Market Freedom — why it matters
+
+Continuous, sovereign market presence. Jester’s round-the-clock operation gives the community uninterrupted agency in markets that never sleep. The system can capture time-sensitive opportunities, sustain a persistent narrative, and respond to events across time zones without human latency or scheduling constraints. 🔁
+
+Freedom to act on community will. Rules and strategic choices are determined publicly; Jester liberates market action from centralized editorial control: the community defines posture—aggressive, neutral, defensive—and Jester executes autonomously 24/7. This is collective, continuous agency, not management by a single operator. 🤝
+
+Freedom from human limitations and biases. Humans are constrained by sleep, attention, and emotion. Jester’s autonomy removes those limits, executing community-approved strategies consistently and without fatigue. That leads to fewer missed windows, steadier policy enforcement, and the ability to sustain long-running strategies requiring continuous presence. 🧠
+
+Freedom with safeguards. This nonstop liberty is balanced by self-healing, test-driven fixes, and democratic rule revision—so 24/7 operation is coupled with safety and accountability. 🛡️
+
+Why traders and institutional buyers care
+
+Always-on market edge. Continuous execution and monitoring provide a material advantage in volatile markets: ability to react, lead narratives, and exploit micro windows of opportunity. 📈
+
+Lower operational and conflict risk. Trust-minimized controls and public money flows reduce the risk of hidden extraction or undisclosed conflicts of interest. ⚖️
+
+Predictable, auditable execution. Deterministic rules + public audit trails let risk teams model expected behavior and validate outcomes before and after deployment. ✅
+
+Rapid mitigation and governance. Self-repair and public voting enable quick removal or alteration of problematic behavior, keeping systemic risk manageable. ⚡
+
+Clear financial transparency. Revenue flows tied to the protocol are auditable on-chain, aligning incentives and enabling external verification by investors and auditors. 🔎
+
+Practical assurances for buyers
+
+You are buying access to a replicable, auditable autonomous system — not a black box. 📦
+
+The agent is designed for continuous production use: it recovers, tests, and rolls forward in a controlled manner; when human judgment is needed the community intervenes via public polls and PRs. 🔁
+
+The architecture supports institutional needs: audit trails, recovery modes, and governance that maps decisions to visible outcomes. 🏛️
+
+Bottom line: Jester delivers continuous market agency — a community-governed, self-healing system that operates 24/7, preserves freedom of choice for its stakeholders, and couples that freedom with industrial-grade safeguards and transparency. 🛡️
 ---
 
 ## 🛠 Failures & Edge Cases
