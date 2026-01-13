@@ -1,0 +1,56 @@
+﻿name: Deploy Docusaurus site to GitHub Pages
+
+on:
+  push:
+    branches: [ main, website/add-site ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (20.x)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Verify node & npm
+        run: |
+          node -v
+          npm -v
+
+      - name: Copy rules into website/docs
+        run: |
+          mkdir -p website/docs
+          cp rules/Rules.md website/docs/rules.md || true
+          cp rules/CURRENT_RULES.md website/docs/CURRENT_RULES.md || true
+
+      - name: Install dependencies (website)
+        working-directory: website
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Build website
+        working-directory: website
+        run: npm run build
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: website/build
