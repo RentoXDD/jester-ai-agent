@@ -136,8 +136,7 @@ The AI becomes trust-minimized and autonomous.
 
 ### Revenue Model
 
-- Jester earns **only from pump.fun trading fees**  
-- No subscriptions  
+- Jester earns **only from pump.fun trading fees**   
 - No ads  
 - No external monetization
 
