@@ -79,10 +79,7 @@ Rule proposals are submitted during **Stage 1** of the weekly poll.
 ### How to submit
 
 - Reply directly to the announcement post  
-- Use one of the supported prefixes:
-  - `ADD_RULE:`
-  - `REMOVE_RULE:`
-  - `CUSTOM:`  
+
 ---
 
  ## 🔢 How Votes Are Counted
@@ -129,9 +126,3 @@ Guidelines for local testing and verification.
 - Validate diffs in `data/rules.json`  
 - Use dry-run modes when available  
 
-### Important Warnings
-
-- **Never manually edit generated files**  
-- Manual edits will be overwritten by automation  
-
----
