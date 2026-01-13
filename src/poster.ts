@@ -18,7 +18,8 @@ import { log } from "./logger.js";
 
 type TweetResponseV2 = { data?: { id: string } };
 
-async function postTweet(text: string, replyToId?: string): Promise<string> {
+// ✅ FIX: export named function so `import { postTweet } from "./poster.js"` works
+export async function postTweet(text: string, replyToId?: string): Promise<string> {
   try {
     let res: TweetResponseV2;
     if (replyToId) {
@@ -116,12 +117,16 @@ export async function postTweetWithMedia(text: string, imageBuffer?: Buffer, rep
       log("INFO", "Tweet with media posted", { id, mediaId });
       return id;
     } catch (err) {
-      log("ERROR", "Failed to post tweet with media, trying text-only fallback", { error: String((err as any)?.message ?? err) });
+      log("ERROR", "Failed to post tweet with media, trying text-only fallback", {
+        error: String((err as any)?.message ?? err),
+      });
       // fallback: post text-only
       return await postTweet(text, replyToId);
     }
   } catch (err: any) {
-    log("ERROR", "Unexpected error in postTweetWithMedia, falling back to text-only", { error: String(err?.message ?? err) });
+    log("ERROR", "Unexpected error in postTweetWithMedia, falling back to text-only", {
+      error: String(err?.message ?? err),
+    });
     // ultimate fallback: throw or attempt text-only
     return await postTweet(text, replyToId);
   }
