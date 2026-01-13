@@ -1,7 +1,7 @@
 # 📜 Rules & Governance for Jester AI Agent
 
 <table width="100%"><tr><td align="left">
-🌐 Languages: English 🇺🇸</a> | <a href="./rules/rules.zh.md">中文 🇨🇳</a>
+🌐 Languages: English 🇺🇸</a> | <a href="/rules/rules.zh.md">中文 🇨🇳</a>
 </td></tr><tr><td align="right">  &nbsp; • &nbsp;
 <a href="../README.md">📘Main page</a> &nbsp; • &nbsp;
 <a href="./rules/CURRENT_RULES.md">✅ Current Rules</a>
