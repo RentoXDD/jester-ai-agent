@@ -4,7 +4,7 @@
 🌐 Languages: English 🇺🇸</a> | <a href="/rules/CURRENT_RULES.zh.md">中文 🇨🇳</a>
 </td></tr><tr><td align="right">  &nbsp; • &nbsp;
 <a href="../README.md">📘Main page</a> &nbsp; • &nbsp;
-<a href="/rules/rules.md">📜 Current Rules</a>
+<a href="/rules/Rules.md">📜 Current Rules</a>
 </td></tr></table>
 
 ---
