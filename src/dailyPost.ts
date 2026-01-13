@@ -71,12 +71,13 @@ export async function runDailyPost(): Promise<void> {
         continue;
       }
 
-      // Try generate image (best-effort). If it fails, post text-only.
+      // Try to generate image via Groq (best-effort). If fails, we post text-only.
       let imageBuffer: Buffer | undefined;
       try {
-        imageBuffer = await generateImageForPost(topic, context);
+        imageBuffer = await generateImageForPost(topic, context, tweet);
+        log("INFO", "Image generated for daily post", { topic, size: imageBuffer.length });
       } catch (imgErr: any) {
-        log("WARN", "Image generation failed, will post text-only", { error: String(imgErr?.message ?? imgErr) });
+        log("WARN", "Image generation failed; posting text-only", { error: String(imgErr?.message ?? imgErr) });
         imageBuffer = undefined;
       }
 
