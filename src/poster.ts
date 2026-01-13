@@ -18,10 +18,11 @@ import { log } from "./logger.js";
 
 type TweetResponseV2 = { data?: { id: string } };
 
-// ✅ FIX: export named function so `import { postTweet } from "./poster.js"` works
+// ✅ IMPORTANT: must be a NAMED EXPORT because poll.ts imports { postTweet, pinTweet }
 export async function postTweet(text: string, replyToId?: string): Promise<string> {
   try {
     let res: TweetResponseV2;
+
     if (replyToId) {
       res = (await xClient.v2.tweet({
         text,
@@ -33,6 +34,7 @@ export async function postTweet(text: string, replyToId?: string): Promise<strin
 
     const id = res?.data?.id;
     if (!id) throw new Error("No tweet id returned");
+
     log("INFO", "Tweet posted (text-only)", { id, length: text.length });
     return id;
   } catch (err: any) {
@@ -59,7 +61,9 @@ async function uploadImageBuffer(buffer: Buffer): Promise<string> {
       }
     }
   } catch (err) {
-    log("WARN", "v1.uploadMedia failed, will try fallback", { error: String((err as any)?.message ?? err) });
+    log("WARN", "v1.uploadMedia failed, will try fallback", {
+      error: String((err as any)?.message ?? err),
+    });
     // fallthrough to next method
   }
 
@@ -89,7 +93,11 @@ async function uploadImageBuffer(buffer: Buffer): Promise<string> {
  *
  * Returns tweetId string.
  */
-export async function postTweetWithMedia(text: string, imageBuffer?: Buffer, replyToId?: string): Promise<string> {
+export async function postTweetWithMedia(
+  text: string,
+  imageBuffer?: Buffer,
+  replyToId?: string
+): Promise<string> {
   try {
     if (!imageBuffer) {
       return await postTweet(text, replyToId);
@@ -100,7 +108,9 @@ export async function postTweetWithMedia(text: string, imageBuffer?: Buffer, rep
     try {
       mediaId = await uploadImageBuffer(imageBuffer);
     } catch (upErr: any) {
-      log("ERROR", "Media upload failed, falling back to text-only", { error: String(upErr?.message ?? upErr) });
+      log("ERROR", "Media upload failed, falling back to text-only", {
+        error: String(upErr?.message ?? upErr),
+      });
       // fallback to text-only
       return await postTweet(text, replyToId);
     }
@@ -112,8 +122,10 @@ export async function postTweetWithMedia(text: string, imageBuffer?: Buffer, rep
         media: { media_ids: [mediaId] },
         reply: replyToId ? { in_reply_to_tweet_id: replyToId } : undefined,
       });
+
       const id = (res as TweetResponseV2)?.data?.id;
       if (!id) throw new Error("No tweet id returned after posting with media");
+
       log("INFO", "Tweet with media posted", { id, mediaId });
       return id;
     } catch (err) {
