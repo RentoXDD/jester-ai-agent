@@ -2,9 +2,10 @@
 import { MemoryStore } from "./memoryStore.js";
 import { generateTweet } from "./generator.js";
 import { validateOutput, finalizeTweet } from "./guardrails.js";
-import { postTweet } from "./poster.js";
+import { postTweetWithMedia } from "./poster.js";
 import { log } from "./logger.js";
 import { normalizeWhitespace, ensureRibbit } from "./text.js";
+import { generateImageForPost } from "./imageGenerator.js";
 
 type TopicPick = { topic: string; context: string };
 
@@ -23,15 +24,12 @@ function pickTopic(): TopicPick {
 function clampTweet(t: string, maxLen: number): string {
   if (t.length <= maxLen) return t;
 
-  // leave space for "… ribbit."
   const suffix = " ribbit.";
-  const hard = Math.max(0, maxLen - suffix.length - 1); // 1 for ellipsis char
+  const hard = Math.max(0, maxLen - suffix.length - 1);
   let cut = t.slice(0, hard).trimEnd();
 
-  // avoid cutting to empty
   if (!cut) cut = t.slice(0, maxLen).trimEnd();
 
-  // ensure final punctuation is clean
   if (cut.endsWith(".")) cut = cut.slice(0, -1).trimEnd();
 
   return `${cut}…${suffix}`;
@@ -61,12 +59,10 @@ export async function runDailyPost(): Promise<void> {
         recentPosts,
       });
 
-      // Normalize whitespace + ensure ribbit, then finalize/guardrails
       let tweet = normalizeWhitespace(raw);
       tweet = ensureRibbit(tweet);
       tweet = finalizeTweet(tweet);
 
-      // Hard length clamp (still keep ribbit.)
       tweet = clampTweet(tweet, MAX_LEN);
 
       const check = validateOutput(tweet);
@@ -75,8 +71,16 @@ export async function runDailyPost(): Promise<void> {
         continue;
       }
 
-      // Post to X (this must throw if tokens invalid / API fails)
-      const tweetId = await postTweet(tweet);
+      // Try generate image (best-effort). If it fails, post text-only.
+      let imageBuffer: Buffer | undefined;
+      try {
+        imageBuffer = await generateImageForPost(topic, context);
+      } catch (imgErr: any) {
+        log("WARN", "Image generation failed, will post text-only", { error: String(imgErr?.message ?? imgErr) });
+        imageBuffer = undefined;
+      }
+
+      const tweetId = await postTweetWithMedia(tweet, imageBuffer);
 
       // Persist memory
       store.addPost({ tweet_id: tweetId, content: tweet, topic, context });
@@ -89,6 +93,5 @@ export async function runDailyPost(): Promise<void> {
     }
   }
 
-  // ❗CRITICAL: make the job fail (so Actions doesn't show ✅ Success)
   throw new Error(`Daily post failed after retries${lastError ? `: ${lastError}` : ""}`);
 }
