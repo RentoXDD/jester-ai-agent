@@ -3,7 +3,7 @@ name: Post Every 3 Hours
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */3 * * *"   # every 3 hours (UTC)
+    - cron: "5 */3 * * *"    # every 3 hours (UTC)
 
 concurrency:
   group: jester-agent-global
