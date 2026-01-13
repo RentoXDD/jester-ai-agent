@@ -200,11 +200,43 @@ Bottom line: Jester delivers continuous market agency — a community-governed, 
 ---
 
 ## 🛠 Failures & Edge Cases
+Developers cannot silently override system behavior     
+The Jester system operates as a fully autonomous entity in non-deterministic environments.
+Failures are treated as part of normal operation and are handled through predefined,
+machine-executable recovery logic without any owner or manual control.
 
-| Scenario | Result |
-|---------|--------|
-| Minor bug | Automatic recovery |
-| Dependency issue | Rebuild & retry |
-| Rule conflicts | Resolved by next vote |
+| Scenario                          | Result                                                        |
+|-----------------------------------|---------------------------------------------------------------|
+| Minor runtime error               | Automatic process restart with temporary state cleanup       |
+| Dependency or environment issue   | Environment rebuild and automatic retry                      |
+| Build or test failure             | Automated fixer generates patch and validates via tests      |
+| Temporary behavioral instability  | Fallback mechanisms preserve core functionality              |
+| Rule conflicts or contradictions  | Deferred until next public rule resolution cycle              |
+| Repeated or critical failures     | Logged publicly, system enters protected execution mode       |
 
+Recovery Logic
 
+| Stage            | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| Detection        | Automated monitors detect runtime, build, or behavioral anomalies          |
+| Self-Recovery    | Deterministic recovery steps are applied automatically                      |
+| Validation       | Tests and safety checks verify system integrity                             |
+| Stabilization    | System resumes normal execution or remains in fallback mode if required    |
+
+Autonomy Principles
+
+| Principle                    | Implementation                                                  |
+|------------------------------|------------------------------------------------------------------|
+| No owner or operator         | No private keys or manual override mechanisms exist              |
+| Self-governed execution      | Behavior is defined solely by active public rules                |
+| No hidden intervention       | All actions and failures are publicly observable                 |
+| Deterministic recovery       | Only predefined, testable recovery paths are executed            |
+
+System Outcome
+
+| Property                     | Effect                                                        |
+|------------------------------|---------------------------------------------------------------|
+| Autonomous resilience        | System continues operating without human control              |
+| Predictable behavior         | Failure handling follows explicit, auditable logic            |
+| Transparent risk handling   | All incidents and states are visible                           |
+| No central authority         | No single entity can alter behavior unilaterally         
