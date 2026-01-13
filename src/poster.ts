@@ -18,11 +18,10 @@ import { log } from "./logger.js";
 
 type TweetResponseV2 = { data?: { id: string } };
 
-// ✅ IMPORTANT: must be a NAMED EXPORT because poll.ts imports { postTweet, pinTweet }
+// ✅ IMPORTANT: must be exported because src/poll.ts imports it as a named export
 export async function postTweet(text: string, replyToId?: string): Promise<string> {
   try {
     let res: TweetResponseV2;
-
     if (replyToId) {
       res = (await xClient.v2.tweet({
         text,
@@ -34,7 +33,6 @@ export async function postTweet(text: string, replyToId?: string): Promise<strin
 
     const id = res?.data?.id;
     if (!id) throw new Error("No tweet id returned");
-
     log("INFO", "Tweet posted (text-only)", { id, length: text.length });
     return id;
   } catch (err: any) {
@@ -80,7 +78,9 @@ async function uploadImageBuffer(buffer: Buffer): Promise<string> {
       }
     }
   } catch (err) {
-    log("WARN", "v1.post('media/upload') failed", { error: String((err as any)?.message ?? err) });
+    log("WARN", "v1.post('media/upload') failed", {
+      error: String((err as any)?.message ?? err),
+    });
   }
 
   // If we reach here, upload failed
@@ -122,10 +122,8 @@ export async function postTweetWithMedia(
         media: { media_ids: [mediaId] },
         reply: replyToId ? { in_reply_to_tweet_id: replyToId } : undefined,
       });
-
       const id = (res as TweetResponseV2)?.data?.id;
       if (!id) throw new Error("No tweet id returned after posting with media");
-
       log("INFO", "Tweet with media posted", { id, mediaId });
       return id;
     } catch (err) {
@@ -167,7 +165,9 @@ export async function pinTweet(tweetId: string): Promise<boolean> {
         return true;
       } catch (err) {
         // continue to general fallback
-        log("WARN", "account/pin_tweet failed", { error: String((err as any)?.message ?? err) });
+        log("WARN", "account/pin_tweet failed", {
+          error: String((err as any)?.message ?? err),
+        });
       }
     }
 
