@@ -13,15 +13,11 @@ This document is the authoritative, human-readable description of the governance
 - [📋 Current Rules ](/rules/CURRENT_RULES.md)  
 - [🏛 Governance Overview](#-governance-overview)  
 - [🗳 Two-stage Weekly Poll (Flow)](#-two-stage-weekly-poll-flow)  
-- [📐 Rule Schema](#-rule-schema)  
-- [✅ Current Active Rules (authoritative)](#-current-active-rules-authoritative)  
 - [📝 Change Log](#-change-log)  
 - [💡 How to Propose Changes](#-how-to-propose-changes)  
 - [🔢 How Votes Are Counted](#-how-votes-are-counted)  
 - [📌 Pinning & Permissions](#-pinning--permissions)  
-- [⚙️ Applying Rules & Automation](#-applying-rules--automation)  
 - [🧪 Testing / Debugging Tips](#-testing--debugging-tips)  
-- [🔧 Appendix: Examples & Scripts](#-appendix-examples--scripts)
 
 ---
 
@@ -57,22 +53,85 @@ This document is the authoritative, human-readable description of the governance
 5. **Final Announcement** 🏁  
    - The final result is posted (and pinned if possible), saved in `data/poll.json`, and a Change Log entry is appended in this README.
 
+## 📝 Change Log
+
+Every completed governance cycle appends a Change Log entry.
+
+### Each entry includes
+
+- Finalization timestamp  
+- Winning option  
+- Applied action (if any)  
+- Reference to poll data  
+
+### Purpose of the Change Log
+
+- Preserve historical context  
+- Enable full behavioral reconstruction  
+- Support independent audits  
+
 ---
 
-## 📐 Rule Schema
+## 💡 How to Propose Changes
 
-Rules are stored in JSON. Example `data/rules.json`:
+Rule proposals are submitted during **Stage 1** of the weekly poll.
 
-```json
-{
-  "rules": [
-    {
-      "id": "format-short",
-      "text": "Prefer short posts and short sentences.",
-      "enabled": true,
-      "addedAt": "2025-10-01T12:00:00Z",
-      "source": "manual",
-      "notes": "Initial rule"
-    }
-  ]
-}
+### How to submit
+
+- Reply directly to the announcement post  
+- Use one of the supported prefixes:
+  - `ADD_RULE:`
+  - `REMOVE_RULE:`
+  - `CUSTOM:`  
+---
+
+ ## 🔢 How Votes Are Counted
+
+Vote counting is strict and deterministic.
+
+### Counting Logic
+
+- Only numeric replies matching valid options are accepted  
+- Only the **first valid reply per author** is counted  
+- Replies outside the voting window are ignored  
+- Results are fully reproducible from raw reply data  
+
+### Interpretation Policy
+
+- No manual interpretation is applied  
+- No discretionary adjustments are allowed  
+
+---
+
+## 📌 Pinning & Permissions
+
+### Pinning Behavior
+
+- Stage 1 and Stage 2 posts are pinned when possible  
+- Pinning is used for **visibility only**  
+
+### Clarifications
+
+- Pin state does **not** affect vote validity  
+- Failure to pin does **not** invalidate governance  
+- Correctness never depends on UI behavior  
+
+---
+
+
+## 🧪 Testing / Debugging Tips
+
+Guidelines for local testing and verification.
+
+### Recommended Checks
+
+- Inspect `data/poll.json` after execution  
+- Validate diffs in `data/rules.json`  
+- Use dry-run modes when available  
+
+### Important Warnings
+
+- **Never manually edit generated files**  
+- Manual edits will be overwritten by automation  
+
+---
