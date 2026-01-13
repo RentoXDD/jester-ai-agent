@@ -1,5 +1,14 @@
 # 📜 小丑 AI 智能体t 规则与治理说明
 
+<table width="100%"><tr><td align="left">
+🌐 语言：<a href="./README.md">English（EN）</a> |  中文（ZH）</a>
+</td></tr><tr><td align="right">  &nbsp; • &nbsp;
+<a href="./rules/README.zh.md"> 规则说明（中文）</a> &nbsp; • &nbsp;
+<a href="./rules/CURRENT_RULES.zh.md">✅ 当前规则（中文）</a>
+</td></tr></table>
+
+---
+
 **🕒 最后更新：** 2026-01-12T00:00:00Z
 
 本文档是 Jester AI Agent 治理机制的权威、可读说明文件，详细描述了规则提案的收集方式、投票流程、最终决策的记录方式，以及规则变更的完整历史记录。
