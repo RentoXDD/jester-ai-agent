@@ -67,22 +67,27 @@ export const CONFIG = {
   },
 
   rules: {
-    // this field used to be undefined in one of the cases
     rulesFile: env("RULES_FILE", PATHS.RULES_FILE)!,
-
-    // future: if you want to add rule limits/modes
     maxRules: envInt("RULES_MAX", 200),
   },
 
   poll: {
-    // voting window (currently 24 hours)
     windowHours: envInt("POLL_WINDOW_HOURS", 24),
-
-    // options 1..5
     minOption: envInt("POLL_MIN_OPTION", 1),
     maxOption: envInt("POLL_MAX_OPTION", 5),
   },
 
   // Max replies per run (workflow passes MAX_REPLIES_PER_RUN)
   MAX_REPLIES_PER_RUN: envInt("MAX_REPLIES_PER_RUN", 8),
+
+  // Image generation config
+  image: {
+    provider: env("IMAGE_PROVIDER", "openai"), // "openai" | "sd"
+    openaiApiKey: env("OPENAI_API_KEY", ""),
+    sdApiUrl: env("SD_API_URL", ""), // e.g. "http://localhost:7860"
+    sdApiKey: env("SD_API_KEY", ""),
+    width: envInt("IMAGE_WIDTH", 1024),
+    height: envInt("IMAGE_HEIGHT", 1024),
+    style: env("IMAGE_STYLE", "neon pixel-art frog jester, puppetmaster vibes, cinematic"),
+  },
 };
