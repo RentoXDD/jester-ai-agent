@@ -2,7 +2,7 @@
 🌐 语言：<a href="../README.md">English 🇺🇸</a> | <a href="../README_zh.md">中文 🇨🇳</a>
 </td></tr><tr><td align="right"> &nbsp; • &nbsp;
 <a href="../README_zh.md">📘 中文首页</a> &nbsp; • &nbsp;
-<a href="./CURRENT_RULES.zh.md"> 📜 当前规则（中文）</a>
+<a href="./CURRENT_RULES.zh.md">  ✅ 当前规则（中文）</a>
 </td></tr></table>
 
 # 🤡 规则与治理 — Jester AI Agent（中文）
