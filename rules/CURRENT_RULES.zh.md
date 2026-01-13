@@ -1,16 +1,16 @@
+# 📋 当前规则 — Jester AI Agent（中文）
+
+**最后更新：** 2026-01-12T00:00:00Z  
+**说明：** `data/rules.json` 为机器可读的权威数据，本文件为中文人类可读视图，由自动化脚本在每次投票终结后生成与更新。
+
+---
+
 <table width="100%"><tr><td align="left">
 🌐 语言：<a href="../README.md">English 🇺🇸</a> | 中文 🇨🇳</a>
 </td></tr><tr><td align="right"> &nbsp; • &nbsp;
 <a href="../README_zh.md">📘 中文首页</a> &nbsp; • &nbsp;
 <a href="../rules/rules.zh.md">📜 规则说明（中文）
 </td></tr></table>
-
----
-
-# 📋 当前规则 — Jester AI Agent（中文）
-
-**最后更新：** 2026-01-12T00:00:00Z  
-**说明：** `data/rules.json` 为机器可读的权威数据，本文件为中文人类可读视图，由自动化脚本在每次投票终结后生成与更新。
 
 ---
 
