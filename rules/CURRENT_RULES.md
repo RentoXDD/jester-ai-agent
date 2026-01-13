@@ -1,9 +1,18 @@
 # 📋 Current Rules — Jester AI Agent
 
+<table width="100%"><tr><td align="left">
+🌐 Languages: English 🇺🇸</a> | <a href="/rules/CURRENT_RULES.zh.md">中文 🇨🇳</a>
+</td></tr><tr><td align="right">  &nbsp; • &nbsp;
+<a href="../README.md">📘Main page</a> &nbsp; • &nbsp;
+<a href="/rules/rules.md">📜 Current Rules</a>
+</td></tr></table>
+
+---
+
 **🕒 Last updated:** 2026-01-12T00:00:00Z  
 **📂 Location:** `data/rules.json` is the authoritative machine-readable source. This human-friendly file is regenerated automatically after each final poll.
 
----
+
 
 ## 🔔 Snapshot — Active Rules (at-a-glance)
 
