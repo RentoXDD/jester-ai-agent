@@ -1,4 +1,4 @@
-name: Poll Collect & Improve (every 12h)
+name: Poll Collect & Improve (every 12h) 
 
 on:
   workflow_dispatch:
