@@ -1,12 +1,20 @@
 # 📜 Rules & Governance for Jester AI Agent
 
+<table width="100%"><tr><td align="left">
+🌐 Languages: English 🇺🇸</a> | <a href="./rules/rules.zh.md">中文 🇨🇳</a>
+</td></tr><tr><td align="right">  &nbsp; • &nbsp;
+<a href="../README.md">📘Main page</a> &nbsp; • &nbsp;
+<a href="./rules/CURRENT_RULES.md">✅ Current Rules</a>
+</td></tr></table>
+
+---
+
 **🕒 Last updated:** 2026-01-12T00:00:00Z
 
 This document is the authoritative, human-readable description of the governance system used by the Jester AI Agent: how rule proposals are collected, how votes are held, how final decisions are recorded, and the canonical change log for rules.
 
 > The runtime state is also stored in `data/poll.json` and rules may be stored in `data/rules.json`. This document supplements those files with explanations and a human-readable changelog.
 
----
 
 ## 📚 Table of contents
 
