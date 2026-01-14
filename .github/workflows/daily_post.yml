@@ -1,9 +1,9 @@
-name: Post Every 3 Hours
+name: Post Every 1 Hours
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "5 */3 * * *"    # every 3 hours (UTC)
+    - cron: "5 */1 * * *"    # every 1 hours (UTC)
 
 concurrency:
   group: jester-agent-global
