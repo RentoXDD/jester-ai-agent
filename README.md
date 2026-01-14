@@ -11,16 +11,15 @@
 
 ## 📌 Navigation
 
-- [What Jester Is](#-what-jester-is)  
-- [Governance & Freedom of Choice](#-governance--freedom-of-choice)  
-- [Autonomous Behavior](#-autonomous-behavior)  
-- [Self-Healing & Error Recovery](#-self-healing--error-recovery)  
-- [Security & Trust Model](#-security--trust-model)  
-- [Token Economics](#-token-economics)  
-- [Autonomy Explained](#-autonomy-explained)  
-- [Failures & Edge Cases](#-failures--edge-cases)  
-- [Repository Structure](#-repository-structure)  
-- [Philosophy](#-philosophy)
+- [What Jester Is](#-what-jester-is)🔥  
+- [Governance & Freedom of Choice](#-governance--freedom-of-choice)🗳  
+- [Autonomous Behavior](#-autonomous-behavior)🤖  
+- [Self-Healing & Error Recovery](#-self-healing--error-recovery)🧠  
+- [Security & Trust Model](#-security--trust-model)🔐  
+- [Token Economics](#-token-economics)💰  
+- [Autonomy Explained](#-autonomy-explained)🧩  
+- [Failures & Edge Cases](#-failures--edge-cases)🛠  
+
 
 ---
 
@@ -197,6 +196,7 @@ The agent is designed for continuous production use: it recovers, tests, and rol
 The architecture supports institutional needs: audit trails, recovery modes, and governance that maps decisions to visible outcomes. 🏛️
 
 Bottom line: Jester delivers continuous market agency — a community-governed, self-healing system that operates 24/7, preserves freedom of choice for its stakeholders, and couples that freedom with industrial-grade safeguards and transparency. 🛡️
+
 ---
 
 ## 🛠 Failures & Edge Cases
